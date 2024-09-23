@@ -1,0 +1,5 @@
+package com.example.navilaw
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity()
