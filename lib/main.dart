@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -35,8 +33,6 @@ class MyApp extends StatelessWidget {
         ),
         scaffoldBackgroundColor: Colors.white,
         visualDensity: VisualDensity.adaptivePlatformDensity,
-
-        // Define button themes
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.brown,
@@ -73,37 +69,80 @@ class HomePage extends StatelessWidget {
               // Top Navigation Bar
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      'LawNavigator',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        const Icon(Icons.language),
-                        const SizedBox(width: 8),
-                        const Text('Eng'),
-                        const SizedBox(width: 20),
-                        const Text('Home'),
-                        const SizedBox(width: 20),
-                        const Text('Templates'),
-                        const SizedBox(width: 20),
-                        const Text('About'),
-                        const SizedBox(width: 20),
-                        const Text('Team'),
-                        const SizedBox(width: 20),
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: const Text('Get started'), // Uses the global theme
-                        ),
-                      ],
-                    ),
+                child: ResponsiveVisibility(
+                  visible: false,
+                  visibleConditions: const [
+                    Condition.largerThan(name: MOBILE)
                   ],
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'LawNavigator',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Wrap(
+                        alignment: WrapAlignment.center,
+                        spacing: 20,
+                        children: [
+                          const Icon(Icons.language),
+                          const Text('Eng'),
+                          const Text('Home'),
+                          const Text('Templates'),
+                          const Text('About'),
+                          const Text('Team'),
+                          ElevatedButton(
+                            onPressed: () {},
+                            child: const Text('Get started'), // Uses the global theme
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              
+              // Mobile version of Top Navigation Bar
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 15),
+                child: ResponsiveVisibility(
+                  visible: false,
+                  visibleConditions: const [
+                    Condition.smallerThan(name: TABLET)
+                  ],
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'LawNavigator',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+                      Wrap(
+                        alignment: WrapAlignment.start,
+                        spacing: 20,
+                        runSpacing: 10,
+                        children: [
+                          const Icon(Icons.language),
+                          const Text('Eng'),
+                          const Text('Home'),
+                          const Text('Templates'),
+                          const Text('About'),
+                          const Text('Team'),
+                          ElevatedButton(
+                            onPressed: () {},
+                            child: const Text('Get started'), // Uses the global theme
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(height: 50),
