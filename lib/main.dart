@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:navilaw/search.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 void main() {
@@ -37,16 +38,6 @@ class MyApp extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.brown,
             foregroundColor: Colors.white, // Set text color to white
-          ),
-        ),
-        textButtonTheme: TextButtonThemeData(
-          style: TextButton.styleFrom(
-            foregroundColor: Colors.white, // Set text color to white for TextButton
-          ),
-        ),
-        outlinedButtonTheme: OutlinedButtonThemeData(
-          style: OutlinedButton.styleFrom(
-            foregroundColor: Colors.white, // Set text color to white for OutlinedButton
           ),
         ),
       ),
@@ -189,11 +180,19 @@ class HomePage extends StatelessWidget {
                         ),
                         const SizedBox(height: 10),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            // Navigate to the search engine page when button is clicked
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const LegalSearchScreen(),
+                              ),
+                            );
+                          },
                           child: const Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text('Try Now'), // Uses the global theme
+                              Text('Try Now'),
                               SizedBox(width: 8),
                               Icon(Icons.arrow_forward),
                             ],
