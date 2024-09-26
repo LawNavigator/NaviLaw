@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-import '../search.dart';
+import 'search_page.dart';
+
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
