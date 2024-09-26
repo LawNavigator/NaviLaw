@@ -1,11 +1,12 @@
-import 'dart:html' as html; // Import dart:html for web-specific functionality
+import 'dart:developer';
+import 'dart:html' as html; // For web file handling
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:http_parser/http_parser.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:file_picker/file_picker.dart';
+
+import 'package:responsive_framework/responsive_framework.dart';
 
 class LegalSearchScreen extends StatefulWidget {
   const LegalSearchScreen({super.key});
@@ -40,7 +41,7 @@ class _LegalSearchScreenState extends State<LegalSearchScreen> {
 
         if (_files != null) {
           for (var file in _files!) {
-            // Read the file as bytes using FileReader
+            // Use FileReader to read file as bytes
             final reader = html.FileReader();
             reader.readAsArrayBuffer(file); // Read file as ArrayBuffer
             await reader.onLoad.first; // Wait until the file is loaded
@@ -71,7 +72,7 @@ class _LegalSearchScreenState extends State<LegalSearchScreen> {
           });
         }
       } catch (e) {
-        print('Error: $e'); // Print the error details to the console
+        log('Error: $e'); // Log the error details
         setState(() {
           _response = 'Failed to connect to the server. Error: $e'; // Update the error message
         });
@@ -84,23 +85,19 @@ class _LegalSearchScreenState extends State<LegalSearchScreen> {
   }
 
   Future<void> _pickFiles() async {
-    var result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['pdf'],
-      allowMultiple: true,
-    );
+    html.FileUploadInputElement uploadInput = html.FileUploadInputElement();
+    uploadInput.accept = '.pdf'; // Accept only PDF files
+    uploadInput.multiple = true; // Allow multiple file selection
+    uploadInput.click(); // Trigger the file picker
 
-    if (result != null) {
-      setState(() {
-        // Convert the picked files to html.File for web compatibility
-        _files = result.files.map((file) {
-          return html.File(
-            file.bytes!.cast<int>(),
-            file.name,
-          );
-        }).toList();
-      });
-    }
+    uploadInput.onChange.listen((event) {
+      final files = uploadInput.files;
+      if (files != null && files.isNotEmpty) {
+        setState(() {
+          _files = files;
+        });
+      }
+    });
   }
 
   @override
@@ -112,6 +109,7 @@ class _LegalSearchScreenState extends State<LegalSearchScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 50),
+            // Title and button
             ResponsiveVisibility(
               visible: false,
               visibleConditions: const [
@@ -136,7 +134,6 @@ class _LegalSearchScreenState extends State<LegalSearchScreen> {
               ),
             ),
             const SizedBox(height: 50),
-
             // Search engine fields
             Text(
               'ASK.',
