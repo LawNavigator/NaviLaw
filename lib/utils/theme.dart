@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:navilaw/utils/colors.dart';
 
 class AppTheme {
   // Define constants for colors
@@ -14,7 +15,7 @@ class AppTheme {
       textTheme: GoogleFonts.latoTextTheme(
         Theme.of(context).textTheme,
       ),
-      scaffoldBackgroundColor: const Color.fromRGBO(249, 239, 230, 1),
+      scaffoldBackgroundColor: AppColors.backgroundColor,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
