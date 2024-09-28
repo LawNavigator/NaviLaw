@@ -38,16 +38,31 @@ class HomePage extends StatelessWidget {
                   alignment: WrapAlignment.center,
                   spacing: 20,
                   children: [
-                    const Icon(Icons.language, color: Colors.black),
-                    const Text('Eng', style: TextStyle(color: Colors.black)),
-                    const Text('Home', style: TextStyle(color: Colors.black)),
-                    const Text('Templates',
-                        style: TextStyle(color: Colors.black)),
-                    const Text('About', style: TextStyle(color: Colors.black)),
-                    const Text('Team', style: TextStyle(color: Colors.black)),
+                    // const Icon(Icons.language, color: Colors.black),
+                    // const Text('Eng', style: TextStyle(color: Colors.black)),
+                    // const Text('Home', style: TextStyle(color: Colors.black)),
+                    // const Text('Templates',
+                    //     style: TextStyle(color: Colors.black)),
+                    // const Text('About', style: TextStyle(color: Colors.black)),
+                    // const Text('Team', style: TextStyle(color: Colors.black)),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text('Eng'),
+                    ),
+
                     ElevatedButton(
                       onPressed: () {},
-                      child: const Text('Get started'), // Uses the global theme
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        backgroundColor: AppColors.elevatedButtonColor,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: screenWidth * 0.01,
+                          vertical: screenHeight * 0.01,
+                        ),
+                      ),  
+                      child: const Text('Get started'),
                     ),
                     SizedBox(width: screenWidth * 0.05),
                   ],
@@ -61,46 +76,7 @@ class HomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Mobile version of Top Navigation Bar
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15),
-              child: ResponsiveVisibility(
-                visible: false,
-                visibleConditions: const [Condition.smallerThan(name: TABLET)],
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'LawNavigator',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 15),
-                    Wrap(
-                      alignment: WrapAlignment.start,
-                      spacing: 20,
-                      runSpacing: 10,
-                      children: [
-                        const Icon(Icons.language),
-                        const Text('Eng'),
-                        const Text('Home'),
-                        const Text('Templates'),
-                        const Text('About'),
-                        const Text('Team'),
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: const Text(
-                              'Get started'), // Uses the global theme
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 50),
+            SizedBox(height: screenHeight * 0.05),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -219,6 +195,10 @@ class HomePage extends StatelessWidget {
             ),
             Image.asset(
               'assets/images/landing_2.png',
+              width: screenWidth,
+            ),
+            Image.asset(
+              'assets/images/landing_3.png',
               width: screenWidth,
             ),
           ],
