@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:navilaw/utils/colors.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:animated_text_kit/animated_text_kit.dart'; // Import the animated_text_kit package
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 import 'search_page.dart';
 
