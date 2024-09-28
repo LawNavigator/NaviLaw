@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:navilaw/utils/colors.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:animated_text_kit/animated_text_kit.dart'; // Import the animated_text_kit package
 
 import 'search_page.dart';
 
@@ -11,6 +12,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 80,
@@ -144,13 +146,44 @@ class HomePage extends StatelessWidget {
                                   child: Row(
                                     children: [
                                       Expanded(
-                                        child: TextField(
-                                          decoration: InputDecoration(
-                                            hintText:
-                                                'fetch me documents needed for...',
-                                            border: InputBorder.none,
-                                            contentPadding: EdgeInsets.only(
-                                                left: screenWidth * 0.02),
+                                        child: Padding(
+                                          padding: EdgeInsets.only(
+                                              left: screenWidth * 0.02),
+                                          child: AnimatedTextKit(
+                                            animatedTexts: [
+                                              TyperAnimatedText(
+                                                'What are the legal implications of XYZ Corp terminating the contract with ABC Ltd. due to non-payment? Can ABC Ltd. challenge the termination?',
+                                                textStyle: const TextStyle(
+                                                  fontSize: 16.0,
+                                                  color: Colors.black54,
+                                                ),
+                                                speed: const Duration(
+                                                    milliseconds: 80),
+                                              ),
+                                              TyperAnimatedText(
+                                                'Generate a legal report summarizing the contractual obligations and breaches between ABC Ltd. and XYZ Corp.',
+                                                textStyle: const TextStyle(
+                                                  fontSize: 16.0,
+                                                  color: Colors.black54,
+                                                ),
+                                                speed: const Duration(
+                                                    milliseconds: 80),
+                                              ),
+                                              TyperAnimatedText(
+                                                'Search for similar cases and legal precedents to support the legal analysis and recommendations in the report.',
+                                                textStyle: const TextStyle(
+                                                  fontSize: 16.0,
+                                                  color: Colors.black54,
+                                                ),
+                                                speed: const Duration(
+                                                    milliseconds: 80),
+                                              ),
+                                            ],
+                                            repeatForever: true,
+                                            pause: const Duration(
+                                                milliseconds: 2000),
+                                            displayFullTextOnTap: true,
+                                            stopPauseOnTap: true,
                                           ),
                                         ),
                                       ),
@@ -189,7 +222,8 @@ class HomePage extends StatelessWidget {
                                                 color: Colors.white,
                                               ),
                                             ),
-                                            SizedBox(width: screenWidth * 0.01),
+                                            SizedBox(
+                                                width: screenWidth * 0.01),
                                             const Icon(
                                               Icons.gavel,
                                               color: Colors.white,
@@ -202,7 +236,7 @@ class HomePage extends StatelessWidget {
                                   ),
                                 ),
                               ],
-                            )
+                            ),
                           ],
                         ),
                       ),
