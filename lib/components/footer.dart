@@ -7,6 +7,36 @@ class Footer extends StatelessWidget {
   final VoidCallback scrollToTop;
 
   Footer({super.key, required this.scrollToTop});
+
+ final String logoPath = 'assets/images/sih_logo.png';
+ 
+  Widget _buildLogo() {
+    if (logoPath.toLowerCase().endsWith('.svg')) {
+      return SvgPicture.asset(
+        logoPath,
+        height: 300,
+        width: 300,
+        placeholderBuilder: (BuildContext context) => const SizedBox(
+          height: 300,
+          width: 300,
+          child: Center(child: CircularProgressIndicator()),
+        ),
+      );
+    } else {
+      return Image.asset(
+        logoPath,
+        height: 300,
+        width: 300,
+        errorBuilder: (context, error, stackTrace) {
+          debugPrint('Error loading image: $error');
+          return const Icon(Icons.error, size: 100, color: Colors.white);
+        },
+      );
+    }
+  }
+
+
+ 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -31,10 +61,11 @@ class Footer extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(width: screenWidth * 0.02),
-                    SvgPicture.asset(
-                      'assets/svgs/sih_logo.svg',
-                      height: 100,
-                    ),
+                    // SvgPicture.asset(
+                    //   sihLogo,
+                    //   height: 100,
+                    // ),
+                    _buildLogo(),
                     const Spacer(),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
