@@ -3,11 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:navilaw/utils/colors.dart';
 
 class AppTheme {
-  // Define constants for colors
   static const Color primaryColor = Colors.brown;
   static const Color buttonTextColor = Colors.white;
 
-  // Define the theme
   static ThemeData lightTheme(BuildContext context) {
     return ThemeData(
       canvasColor: primaryColor,
@@ -20,7 +18,7 @@ class AppTheme {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: primaryColor,
-          foregroundColor: buttonTextColor, // Set text color to white
+          foregroundColor: buttonTextColor, 
         ),
       ),
     );

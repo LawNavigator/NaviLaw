@@ -1,13 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:navilaw/components/footer.dart';
+import 'package:navilaw/components/team_carousel.dart';
 import 'package:navilaw/utils/colors.dart';
+import 'package:navilaw/utils/theme.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
 import 'search_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
+    final ScrollController scrollController = ScrollController();
+
+  void scrollToTop() {
+    scrollController.animateTo(
+      0.0, 
+      duration: const Duration(seconds: 1),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -60,10 +86,10 @@ class HomePage extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
+        controller: scrollController,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Mobile version of Top Navigation Bar
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 15),
               child: ResponsiveVisibility(
@@ -222,8 +248,7 @@ class HomePage extends StatelessWidget {
                                                 color: Colors.white,
                                               ),
                                             ),
-                                            SizedBox(
-                                                width: screenWidth * 0.01),
+                                            SizedBox(width: screenWidth * 0.01),
                                             const Icon(
                                               Icons.gavel,
                                               color: Colors.white,
@@ -255,6 +280,29 @@ class HomePage extends StatelessWidget {
               'assets/images/landing_2.png',
               width: screenWidth,
             ),
+            Image.asset(
+              'assets/images/landing_3.png',
+              width: screenWidth,
+            ),
+            SizedBox(height: screenHeight * 0.04),
+            Center(
+              child: Text(
+                'The Team That Drives Our Vision',
+                style:
+                    AppTheme.lightTheme(context).textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.w900,
+                          fontSize: 64,
+                        ),
+              ),
+            ),
+            SizedBox(height: screenHeight * 0.04),
+            TeamCarousel(),
+            SizedBox(height: screenHeight * 0.02),
+            SizedBox(
+              width: screenWidth,
+              height: screenHeight * 0.77,
+              child: Footer( scrollToTop: scrollToTop),
+              ),
           ],
         ),
       ),
